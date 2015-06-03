@@ -1,6 +1,6 @@
 <?php
 
-class acf_field_populated_multi_select extends acf_field {
+class acf_field_populated_select extends acf_field {
 
 
     /*
@@ -22,14 +22,14 @@ class acf_field_populated_multi_select extends acf_field {
         *  name (string) Single word, no spaces. Underscores allowed
         */
 
-        $this->name = 'populated-multi-select';
+        $this->name = 'populated-select';
 
 
         /*
         *  label (string) Multiple words, can include spaces, visible when selecting a field type
         */
 
-        $this->label = __('Populated multi select', 'acf-populated-multi-select');
+        $this->label = __('Populated select', 'acf-populated-select');
 
 
         /*
@@ -50,11 +50,11 @@ class acf_field_populated_multi_select extends acf_field {
 
         /*
         *  l10n (array) Array of strings that are used in JavaScript. This allows JS strings to be translated in PHP and loaded via:
-        *  var message = acf._e('populated-multi-select', 'error');
+        *  var message = acf._e('populated-select', 'error');
         */
 
         $this->l10n = array(
-            'error' => __('Error! Please enter a higher value', 'acf-populated-multi-select'),
+            'error' => __('Error! Please enter a higher value', 'acf-populated-select'),
         );
 
 
@@ -90,11 +90,10 @@ class acf_field_populated_multi_select extends acf_field {
         */
 
         acf_render_field_setting( $field, array(
-            'label'         => __('Font Size','acf-populated-multi-select'),
-            'instructions'  => __('Customise the input font size','acf-populated-multi-select'),
-            'type'          => 'number',
-            'name'          => 'font_size',
-            'prepend'       => 'px',
+            'label'         => __('Filter name used for population','acf-populated-select'),
+            'instructions'  => __('if set to "my_filter", you could later populate the field with add_filter("my_filter", "some_fancy_function");','acf-populated-select'),
+            'type'          => 'text',
+            'name'          => 'filter_name',
         ));
 
     }
@@ -128,13 +127,16 @@ class acf_field_populated_multi_select extends acf_field {
             print_r( $field );
         echo '</pre>';
 
-
-        /*
-        *  Create a simple text input using the 'font_size' setting.
-        */
-
+        $fields = [];
+        $fields = apply_filters($field['filter_name'], $fields);
         ?>
-        <input type="text" name="<?php echo esc_attr($field['name']) ?>" value="<?php echo esc_attr($field['value']) ?>" style="font-size:<?php echo $field['font_size'] ?>px;" />
+            <select <?= $field['multiple'] ? 'multiple' : '' ?> name="<?= esc_attr($field['name']) ?>">
+                <?php
+                foreach ($fields as $value => $label) {
+                    echo "<option value='{$key}'>{$label}</option>";
+                }
+                ?>
+            </select>
         <?php
     }
 
@@ -161,13 +163,13 @@ class acf_field_populated_multi_select extends acf_field {
 
 
         // register & include JS
-        wp_register_script( 'acf-input-populated-multi-select', "{$dir}js/input.js" );
-        wp_enqueue_script('acf-input-populated-multi-select');
+        wp_register_script( 'acf-input-populated-select', "{$dir}js/input.js" );
+        wp_enqueue_script('acf-input-populated-select');
 
 
         // register & include CSS
-        wp_register_style( 'acf-input-populated-multi-select', "{$dir}css/input.css" );
-        wp_enqueue_style('acf-input-populated-multi-select');
+        wp_register_style( 'acf-input-populated-select', "{$dir}css/input.css" );
+        wp_enqueue_style('acf-input-populated-select');
 
 
     }
@@ -427,7 +429,7 @@ class acf_field_populated_multi_select extends acf_field {
         // Advanced usage
         if( $value < $field['custom_minimum_setting'] )
         {
-            $valid = __('The value is too little!','acf-populated-multi-select'),
+            $valid = __('The value is too little!','acf-populated-select'),
         }
 
 
@@ -541,6 +543,6 @@ class acf_field_populated_multi_select extends acf_field {
 
 
 // create field
-new acf_field_populated_multi_select();
+new acf_field_populated_select();
 
 ?>

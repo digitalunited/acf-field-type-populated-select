@@ -1,6 +1,6 @@
 <?php
 
-class acf_field_FIELD_NAME extends acf_field {
+class acf_field_populated-multi-select extends acf_field {
 	
 	// vars
 	var $settings, // will hold info such as dir / path
@@ -19,8 +19,8 @@ class acf_field_FIELD_NAME extends acf_field {
 	function __construct()
 	{
 		// vars
-		$this->name = 'FIELD_NAME';
-		$this->label = __('FIELD_LABEL');
+		$this->name = 'populated-multi-select';
+		$this->label = __('Populated multi select');
 		$this->category = __("Basic",'acf'); // Basic, Content, Choice, etc
 		$this->defaults = array(
 			// add default here to merge into your field. 
@@ -145,18 +145,18 @@ class acf_field_FIELD_NAME extends acf_field {
 		
 		
 		// register ACF scripts
-		wp_register_script( 'acf-input-FIELD_NAME', $this->settings['dir'] . 'js/input.js', array('acf-input'), $this->settings['version'] );
-		wp_register_style( 'acf-input-FIELD_NAME', $this->settings['dir'] . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
+		wp_register_script( 'acf-input-populated-multi-select', $this->settings['dir'] . 'js/input.js', array('acf-input'), $this->settings['version'] );
+		wp_register_style( 'acf-input-populated-multi-select', $this->settings['dir'] . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
 		
 		
 		// scripts
 		wp_enqueue_script(array(
-			'acf-input-FIELD_NAME',	
+			'acf-input-populated-multi-select',	
 		));
 
 		// styles
 		wp_enqueue_style(array(
-			'acf-input-FIELD_NAME',	
+			'acf-input-populated-multi-select',	
 		));
 		
 		
@@ -372,6 +372,6 @@ class acf_field_FIELD_NAME extends acf_field {
 
 
 // create field
-new acf_field_FIELD_NAME();
+new acf_field_populated-multi-select();
 
 ?>

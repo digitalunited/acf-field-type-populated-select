@@ -1,0 +1,24 @@
+{
+  "name": "digitalunited/acf-field-type-populated-select",
+  "description": "ACF select which is be populated by a wordpress filter",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "Advanced custom fields",
+    "ACF"
+  ],
+  "homepage": "https://github.com/digitalunited/acf-field-type-populated-select",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mikael Engström",
+      "email": "mikael.engstrom@careofhaus.se",
+      "homepage": "http://careofhaus.se"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.4",
+    "composer/installers": "~1.0"
+  }
+}

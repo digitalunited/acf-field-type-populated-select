@@ -3,7 +3,7 @@
 
     function initialize_field( $el ) {
 
-        //$el.doStuff();
+        $el.find('.select2').select2();
 
     }
 

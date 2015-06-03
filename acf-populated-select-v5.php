@@ -140,11 +140,15 @@ class acf_field_populated_select extends acf_field {
 
         $fields = [];
         $fields = apply_filters($field['filter_name'], $fields);
+
+        $selectedValues = $field['value'] ? $field['value'] : [];
+
         ?>
-            <select id="<?= $field['id'] ?>" <?= $field['multiple'] ? 'multiple' : '' ?> name="<?= esc_attr($field['name']) ?>">
+            <select id="<?= $field['id'] ?>" <?= $field['multiple'] ? 'multiple' : '' ?> name="<?= esc_attr($field['name']) ?>[]" class="select2">
                 <?php
                 foreach ($fields as $value => $label) {
-                    echo "<option value='{$key}'>{$label}</option>";
+                    $maybeSelected = in_array($value, $selectedValues) ? 'selected="selected"' : '';
+                    echo "<option {$maybeSelected} value='{$value}'>{$label}</option>";
                 }
                 ?>
             </select>
@@ -166,12 +170,9 @@ class acf_field_populated_select extends acf_field {
     *  @return  n/a
     */
 
-    /*
 
     function input_admin_enqueue_scripts() {
-
         $dir = plugin_dir_url( __FILE__ );
-
 
         // register & include JS
         wp_register_script( 'acf-input-populated-select', "{$dir}js/input.js" );
@@ -184,9 +185,6 @@ class acf_field_populated_select extends acf_field {
 
 
     }
-
-    */
-
 
     /*
     *  input_admin_head()
@@ -353,15 +351,12 @@ class acf_field_populated_select extends acf_field {
     *  @return  $value
     */
 
+
     /*
-
     function update_value( $value, $post_id, $field ) {
-
         return $value;
-
     }
-
-    */
+     */
 
 
     /*

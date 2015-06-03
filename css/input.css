@@ -1,0 +1,4 @@
+.acf-field-populated-select .select2-container,
+.acf-field-populated-select select {
+    width: 100%;
+}

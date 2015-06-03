@@ -132,11 +132,10 @@ class acf_field_populated_select extends acf_field {
         /*
         *  Review the data of $field.
         *  This will show what data is available
-        */
-
         echo '<pre>';
             print_r( $field );
         echo '</pre>';
+        */
 
         $fields = [];
         $fields = apply_filters($field['filter_name'], $fields);

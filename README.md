@@ -2,13 +2,15 @@
 
 # ACF Populated select Field
 
-ACF select which is be populated by a PHP callback
+ACF select which is be populated by a wordpress filter
 
 -----------------------
 
 ### Description
 
-ACF select which is be populated by a PHP callback
+ACF select which is be populated by wordpress filter.
+
+Supports single/multiple select atm.
 
 ### Compatibility
 

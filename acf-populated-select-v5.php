@@ -44,7 +44,7 @@ class acf_field_populated_select extends acf_field {
         */
 
         $this->defaults = array(
-            'font_size' => 14,
+            'multiple' => false,
         );
 
 
@@ -89,12 +89,23 @@ class acf_field_populated_select extends acf_field {
         *  Please note that you must also have a matching $defaults value for the field name (font_size)
         */
 
-        acf_render_field_setting( $field, array(
+        acf_render_field_setting($field, array(
             'label'         => __('Filter name used for population','acf-populated-select'),
             'instructions'  => __('if set to "my_filter", you could later populate the field with add_filter("my_filter", "some_fancy_function");','acf-populated-select'),
             'type'          => 'text',
             'name'          => 'filter_name',
         ));
+
+        acf_render_field_setting($field, array(
+            'label'         => __('Allow multiple values','acf-populated-select'),
+            'type'          => 'radio',
+            'choices' => [
+                false => 'No',
+                true => 'Yes',
+            ],
+            'name'          => 'multiple',
+        ));
+
 
     }
 
@@ -130,7 +141,7 @@ class acf_field_populated_select extends acf_field {
         $fields = [];
         $fields = apply_filters($field['filter_name'], $fields);
         ?>
-            <select <?= $field['multiple'] ? 'multiple' : '' ?> name="<?= esc_attr($field['name']) ?>">
+            <select id="<?= $field['id'] ?>" <?= $field['multiple'] ? 'multiple' : '' ?> name="<?= esc_attr($field['name']) ?>">
                 <?php
                 foreach ($fields as $value => $label) {
                     echo "<option value='{$key}'>{$label}</option>";

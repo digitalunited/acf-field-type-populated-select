@@ -17,13 +17,11 @@ load_plugin_textdomain( 'acf-populated-multi-select', false, dirname( plugin_bas
 
 // 2. Include field type for ACF5
 // $version = 5 and can be ignored until ACF6 exists
-function include_field_types_populated-multi-select( $version ) {
-
+function include_field_types_populated_multi_select( $version ) {
     include_once('acf-populated-multi-select-v5.php');
-
 }
 
-add_action('acf/include_field_types', 'include_field_types_populated-multi-select');
+add_action('acf/include_field_types', 'include_field_types_populated_multi_select');
 
 /*
 // 3. Include field type for ACF4
@@ -35,3 +33,4 @@ function register_fields_populated-multi-select() {
 
 add_action('acf/register_fields', 'register_fields_populated-multi-select');
 
+ */
